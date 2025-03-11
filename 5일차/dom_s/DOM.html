@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .dom {
+      font-size: 16px;
+    }
+    .btn_group {
+      margin-top: 20px;
+    }
+    .btn_group button {
+      background-color: blue;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    // window.onload : 화면을 로드 한 후에,
+    window.onload = function () {
+      function element0() {
+        document.getElementById('dom_div').style.color = 'red';
+      }
+      function element1() {
+        document.getElementsByTagName('div')[3].style = 'border:2px solid blue';
+      }
+      function element2() {
+        document.getElementsByName('textLink')[0].style.background = 'yellow';
+      }
+      function element3() {
+        let newTag = document.createElement('p');
+        newTag.textContent = 'hi';
+        console.log(newTag);
+      }
+      function element4() {
+        let appendTag = document.createElement('strong');
+        document
+          .getElementsByClassName('appendChild')[0]
+          .appendChild(appendTag);
+      }
+      function element5() {
+        let tag = document.createElement('p');
+        document.getElementsByClassName('setAttribute')[0].appendChild(tag);
+        tag.setAttribute('class', 'tags');
+        tag.style = 'border:2px solid red';
+      }
+      function element6() {
+        let attr = document
+          .getElementsByClassName('getAttribute')[0]
+          .getAttribute('class');
+        console.log(attr);
+      }
+      function element7() {
+        document.getElementsByClassName('innerHTML')[0].innerHTML =
+          '<strong>innerHTML</strong>';
+        document
+          .getElementsByClassName('innerHTML')[0]
+          .getElementsByTagName('strong')[0].style.cssText =
+          'color: red; background: yellow;';
+      }
+      function element8() {
+        let inText = document.createElement('p');
+        document.getElementsByClassName('innerText')[0].appendChild(inText);
+        inText.innerText = '텍스트만 넣을 수 있습니다.';
+        inText.style.cssText = 'color:blue; background:pink; font-size:24px';
+      }
+      function element9() {
+        let text =
+          document.getElementsByClassName('textContent')[0].textContent;
+
+        console.log(text);
+      }
+
+      function element10() {
+        let child = document.getElementsByClassName('childNode')[0].childNodes;
+        let child_length =
+          document.getElementsByClassName('childNode')[0].childNodes.length;
+        console.log(child); // 0: text 1:ul 2:text 3:p 4:text
+        console.log(child_length); //5
+        let child_text = document.getElementsByClassName('childNode');
+        console.log(child_text); // ul, p
+      }
+      function element11() {
+        // nodeName , nodeType, nodeValue
+        let parent_node =
+          document.getElementsByClassName('parentNode')[0].parentNode.nodeName;
+        console.log(parent_node);
+      }
+      function element12() {
+        let first_node =
+          document.getElementsByClassName('firstChild')[0].firstChild; // 첫번쨰 자식 찾기
+        let first_e_node =
+          document.getElementsByClassName('firstChild')[0].firstElementChild; // 첫번째 태그 찾기
+        console.log(first_node); // 첫번째 자식 노드인 text 를 참조
+        console.log(first_e_node); // 첫번째 자식태그인 ul 을 찾음
+      }
+      function element13() {
+        let last_node =
+          document.getElementsByClassName('lastChild')[0].lastChild;
+        let last_e_node =
+          document.getElementsByClassName('lastChild')[0].lastElementChild;
+        console.log(last_node); // 마지막 자식 노드인 공백을 참조
+        console.log(last_e_node); // 마지막 자식태그인 ol 을 찾음
+      }
+      function element14() {
+        let prev_node =
+          document.getElementsByClassName('previousSibling')[0].previousSibling;
+        console.log(prev_node); //text(공백)
+        let prev_e_node =
+          document.getElementsByClassName('previousSibling')[0].previousSibling; //element 가 붙은건 무조건 태그를 찾는거다!!!!!!!!!!!!!!!
+        console.log(prev_e_node); // 이전 태그
+      }
+      function element15() {
+        let next_node =
+          document.getElementsByClassName('nextSibling')[0].nextSibling;
+        console.log(next_node); //text(공백)
+        let next_e_node =
+          document.getElementsByClassName('nextSibling')[0].nextSibling; //element 가 붙은건 무조건 태그를 찾는거다!!!!!!!!!!!!!!!
+        console.log(next_e_node); // 다음요소의 div
+      }
+
+      //insertBefore
+      function element16() {
+        let newNode = document.createElement('div');
+        let newText = document.createTextNode('insertBefore, 입니다.');
+        newNode.appendChild(newText);
+
+        let newTags = document.getElementsByClassName('insertBefore')[0];
+        newTags.insertBefore(newNode, newTags.childNodes[1]);
+        //새로만든요소, 기준 요소
+        newNode.style.cssText =
+          'background:green; color:#fff; font-weight:bold ';
+      }
+
+      //hasAttribute
+      function element17() {
+        let has = document
+          .getElementsByClassName('hasAttribute')[0]
+          .hasAttribute('class');
+        console.log(has);
+      }
+
+      //removeAttribute
+      function element18() {
+        let remove_attr =
+          document.getElementsByClassName('removeAttribute')[0].children;
+        console.log(remove_attr);
+        remove_attr[0].removeAttribute('style');
+      }
+
+      //createTextNode
+      function element19() {
+        let textNode = document.createTextNode('안녕하세요');
+        document
+          .getElementsByClassName('createTextNode')[0]
+          .appendChild(textNode);
+      }
+
+      //append
+      function element20() {
+        let div = document.createElement('div');
+        let p = document.createElement('p');
+        let strong = document.createElement('strong');
+        div.append('요소와 텍스트 추가', p);
+
+        document.getElementsByClassName('append')[0].append(div);
+      }
+      //remove
+      function element21() {
+        const element = document.getElementsByClassName('remove')[0];
+        element.remove();
+      }
+      //add
+      function element22() {
+        // classList : 읽기 전용 속성
+        const list =
+          document.getElementsByClassName('classListAdd')[0].classList;
+        list.add('textAdd');
+      }
+      //remove
+      function element23() {
+        const list_remove =
+          document.getElementsByClassName('classListRemove')[0].classList;
+        list_remove.remove('list_remove');
+        console.log(list_remove);
+      }
+      //toggle
+      function element24() {
+        const list_toggle =
+          document.getElementsByClassName('classListToggle')[0].classList;
+        list_toggle.toggle('new_list_toggle'); // classListToggle 에 new_list_toggle 클래스가 생겼다가 삭제되었다가를 반복한다.
+      }
+      //contains
+      function element25() {
+        document.getElementsByClassName('classListContains')[0].classList;
+        console.log(list_contains.contains('classListContains')); //true 또는 false 를 반환
+      }
+      //replace
+      function element26() {
+        const list_replace =
+          document.getElementsByClassName('classListReplace')[0].classList;
+        list_replace.replace('replace', 'addReplace');
+      }
+      //cloneNode
+      function element27() {
+        const node = document.getElementsByClassName('cloneNode')[0].lastChild;
+        console.log(node);
+        const clone = node.cloneNode(true); //true 로 해야 복사가 된다.
+        document.getElementsByClassName('cloneNode')[0].appendChild(clone);
+      }
+      //querySelector
+      function element28() {
+        document
+          .getElementsByClassName('querySelector')[0]
+          .querySelector('p').style.background = 'yellow';
+      }
+      //querySelectorAll
+      function element29() {
+        const allList = document
+          .getElementsByClassName('querySelectorAll')[0]
+          .querySelectorAll('.all');
+        for (let i = 0; i < allList.length; i++) {
+          allList[i].style.border = '2px solid red';
+        }
+      }
+
+      // style.cssText='값' : css 를 여러개 적용할 떄 이용
+      // 클래스명이 여러개 있을 수 있으므로, 인덱스 번호를 매겨준다.
+      document
+        .getElementsByClassName('changeBtn0')[0]
+        .addEventListener('click', element0);
+      document
+        .getElementsByClassName('changeBtn1')[0]
+        .addEventListener('click', element1);
+      document
+        .getElementsByClassName('changeBtn2')[0]
+        .addEventListener('click', element2);
+      document
+        .getElementsByClassName('changeBtn3')[0]
+        .addEventListener('click', element3);
+      document
+        .getElementsByClassName('changeBtn4')[0]
+        .addEventListener('click', element4);
+      document
+        .getElementsByClassName('changeBtn5')[0]
+        .addEventListener('click', element5);
+      document
+        .getElementsByClassName('changeBtn6')[0]
+        .addEventListener('click', element6);
+      document
+        .getElementsByClassName('changeBtn7')[0]
+        .addEventListener('click', element7);
+      document
+        .getElementsByClassName('changeBtn8')[0]
+        .addEventListener('click', element8);
+      document
+        .getElementsByClassName('changeBtn9')[0]
+        .addEventListener('click', element9);
+
+      document
+        .getElementsByClassName('changeBtn10')[0]
+        .addEventListener('click', element10);
+      document
+        .getElementsByClassName('changeBtn11')[0]
+        .addEventListener('click', element11);
+      document
+        .getElementsByClassName('changeBtn12')[0]
+        .addEventListener('click', element12);
+      document
+        .getElementsByClassName('changeBtn13')[0]
+        .addEventListener('click', element13);
+      document
+        .getElementsByClassName('changeBtn14')[0]
+        .addEventListener('click', element14);
+      document
+        .getElementsByClassName('changeBtn15')[0]
+        .addEventListener('click', element15);
+
+      document
+        .getElementsByClassName('changeBtn16')[0]
+        .addEventListener('click', element16);
+      document
+        .getElementsByClassName('changeBtn17')[0]
+        .addEventListener('click', element17);
+      document
+        .getElementsByClassName('changeBtn18')[0]
+        .addEventListener('click', element18);
+      document
+        .getElementsByClassName('changeBtn19')[0]
+        .addEventListener('click', element19);
+
+      // append 부터
+      document
+        .getElementsByClassName('changeBtn20')[0]
+        .addEventListener('click', element20);
+
+      document
+        .getElementsByClassName('changeBtn21')[0]
+        .addEventListener('click', element21);
+
+      document
+        .getElementsByClassName('changeBtn22')[0]
+        .addEventListener('click', element22);
+
+      document
+        .getElementsByClassName('changeBtn23')[0]
+        .addEventListener('click', element23);
+
+      document
+        .getElementsByClassName('changeBtn24')[0]
+        .addEventListener('click', element24);
+
+      document
+        .getElementsByClassName('changeBtn25')[0]
+        .addEventListener('click', element25);
+
+      document
+        .getElementsByClassName('changeBtn26')[0]
+        .addEventListener('click', element26);
+
+      document
+        .getElementsByClassName('changeBtn27')[0]
+        .addEventListener('click', element27);
+
+      document
+        .getElementsByClassName('changeBtn28')[0]
+        .addEventListener('click', element28);
+
+      document
+        .getElementsByClassName('changeBtn29')[0]
+        .addEventListener('click', element29);
+    };
+  </script>
+  <body>
+    <div class="dom">
+      <div class="getElementById">
+        getElementById는 아이디를 찾습니다.
+        <div id="dom_div">아이디 값이 dom_div</div>
+      </div>
+      <div class="getElementsByTagName">
+        getElementsByTagName 는 태그를 찾습니다.
+      </div>
+      <!-- getElementsByName -->
+      <div class="getElementsByName">
+        <a href="#" name="textLink">getElementsByName</a>속성을 찾습니다.
+      </div>
+      <div class="createElement">
+        createElement('태그명') 새로운 요소(html)을 생성
+      </div>
+      <!-- append : 추가 , appendChild : 부모 요소에 자식 요소를 추가 -->
+      <div class="appendChild">appendChild : 부모 요소에 자식 요소를 추가</div>
+
+      <!-- 속성 가져오기 -->
+      <div class="setAttribute">setAttribute('속성명',값), 속성 추가</div>
+      <div class="getAttribute">getAttribute('속성명값')</div>
+
+      <!-- innerHTML -->
+      <div class="innerHTML">
+        innerHTML 텍스트 또는 요소의 내용의 참조나 설정
+      </div>
+
+      <!-- innerText -->
+      <div class="innerText">innerText 문자열의 참조나 설정</div>
+
+      <!-- textContent -->
+      <div class="textContent">
+        <ul>
+          <li>javascript1</li>
+          <li>javascript2</li>
+        </ul>
+      </div>
+      <div class="childNode">
+        <ul>
+          <li>첫번째 자식 요소</li>
+          <li><strong>두번째 자식 요소</strong></li>
+        </ul>
+        <p>ul과 형제노드</p>
+      </div>
+      <div class="parentNode">부모노드 참조</div>
+      <div class="firstChild">
+        <ol>
+          <li>firstChild_1</li>
+          <li>firstChild_1</li>
+        </ol>
+      </div>
+
+      <div class="lastChild">
+        <ol>
+          <li>lastChild_1</li>
+          <li>lastChild_2</li>
+        </ol>
+      </div>
+
+      <div class="previousSibling">이전노드 참조</div>
+      <div class="nextSibling">다음 노드 참조</div>
+
+      <div class="insertBefore">
+        insertBefore(새요소,기준요소) 특정요소 앞에 삽입, 사용자가 지정하는 기준
+        자식 요소의 바로 앞에 추가
+      </div>
+      <div class="hasAttribute">
+        값(속성)이 있으면 true, 없으면 false 를 반환.
+      </div>
+      <div class="removeAttribute">
+        <strong style="color: red; font-size: 30px; background-color: orange"
+          >지정된 속성을 제거 가능</strong
+        >
+      </div>
+      <div class="createTextNode">텍스트 노드 생성</div>
+    </div>
+
+    <!-- append -->
+    <div class="append">
+      생성된 노드를 요소가 끝나기 전에 삽입. 여러개의 노드와 문자열을 추가
+    </div>
+
+    <div class="remove" style="border: 2px solid red">DOM 에서 요소를 제거</div>
+
+    <div class="classListAdd">classListAdd 클래스 추가</div>
+
+    <div class="classListRemove list_remove">classListRemove 클래스 삭제</div>
+
+    <div class="classListToggle">클래스 추가/삭제를 한번에 가능하게 함</div>
+
+    <div class="classListContains">
+      classListContains 클래스 값이 있으면 true, 없으면 false
+    </div>
+
+    <div class="classListReplace replace">
+      classListReplace 클래스 변경 가능
+    </div>
+
+    <div class="cloneNode">노드의 복사본 생성.</div>
+
+    <div class="querySelector">
+      선택자와 일치하는 첫번째를 가져옴
+      <p>첫번째</p>
+      <p>두번째</p>
+      <p>세번째</p>
+    </div>
+
+    <div class="querySelectorAll">
+      <p class="all">첫번째</p>
+      <p>두번째</p>
+      <p class="all">세번째</p>
+    </div>
+
+    <div class="btn_group">
+      <button class="changeBtn0">getElementById</button>
+      <button class="changeBtn1">getElementsByTagName</button>
+      <button class="changeBtn2">getElementsByName</button>
+      <button class="changeBtn3">createElement</button>
+      <button class="changeBtn4">appendChild</button>
+      <button class="changeBtn5">setAttribute</button>
+      <button class="changeBtn6">getAttribute</button>
+      <button class="changeBtn7">innerHTML</button>
+      <button class="changeBtn8">innerText</button>
+      <button class="changeBtn9">textContent</button>
+
+      <button class="changeBtn10">childNode</button>
+      <button class="changeBtn11">parentNode</button>
+      <button class="changeBtn12">firstChild</button>
+      <button class="changeBtn13">lastChild</button>
+      <button class="changeBtn14">previousSibling</button>
+      <button class="changeBtn15">nextSibling</button>
+
+      <button class="changeBtn16">insertBefore</button>
+      <button class="changeBtn17">hasAttribute</button>
+      <button class="changeBtn18">removeAttribute</button>
+      <button class="changeBtn19">createTextNode</button>
+
+      <!-- append 부터 -->
+      <button class="changeBtn20">append()</button>
+      <button class="changeBtn21">remove()</button>
+      <button class="changeBtn22">classList.add()</button>
+      <button class="changeBtn23">classList.remove()</button>
+      <button class="changeBtn24">classList.toggle()</button>
+      <button class="changeBtn25">classList.contains()</button>
+      <button class="changeBtn26">classList.replace()</button>
+      <button class="changeBtn27">cloneNode()</button>
+      <button class="changeBtn28">querySelector()</button>
+      <button class="changeBtn29">querySelectorAll()</button>
+    </div>
+  </body>
+</html>
