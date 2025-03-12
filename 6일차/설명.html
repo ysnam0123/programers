@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- let, var, const(상수) -->
+    <script>
+      var varBox;
+      varBox = 100;
+      varBox = 200;
+      console.log(varBox); //200
+
+      let letBox;
+      letBox = 100;
+      letBox = 200;
+      console.log(letBox); //200
+
+      function firstScope() {
+        var local = 'if문 밖의 var';
+        if (local) {
+          var local = 'var 재선언';
+        }
+        console.log(local);
+      }
+      firstScope();
+
+      function lastscope() {
+        let local = 'if문 밖의 let';
+        if (local) {
+          let local = 'let 재선언';
+        }
+        console.log('if블럭 안의 let :' + local);
+      }
+      lastscope();
+
+      // const a = 1;
+      // console.log(a); //1
+      // const a = 2;
+
+      // 전역변수 : 함수 외부에서 선언된 변수로, 모든 곳에서 접근이 가능하고 프로그램이 종료될때까지 메모리가 유지된다.
+      // 지역변수 : 함수 또는 블록 내부에서 선언된 변수로, 함수나 블록 내에서만 접근이 가능하다. 실행이 끝나면 메모리가 사라진다.a
+
+      let globalVar = '전역변수';
+      function exFunction() {
+        console.log();
+      }
+      exFunction();
+      console.log(globalVar);
+
+      function exFunction() {
+        let lovalvar = '지역변수';
+        console.log(localvar);
+      }
+      exFunction();
+
+      //falsy(거짓같은 값) : false : 0, -0, null, "",undefined, NaN
+      //조건식
+      const message = age >= 18 ? '성인입니다' : '미성년자입니다';
+      // 변수++ : 문장 실행 후 1을 더한다
+      // ++변수 : 기존 변수에 1을 더한 후 문장 실행
+      // case 값1:
+      //       실행
+      //       break
+      //       case 값2:
+      //       실행
+      //       break
+      //       case 값3:
+      //       실행
+      //       break
+      // }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 변수 : let(ie11), var, const -->
+    <script>
+      var varBox;
+      varBox = 100;
+      varBox = 200;
+      console.log(varBox); //200
+
+      let letBox;
+      letBox = 100;
+      letBox = 200;
+      console.log(letBox); //200
+
+      function firstScope() {
+        var local = 'if문 밖의 var';
+        if (local) {
+          var local = 'var 재선언';
+          console.log('if 블럭안의var:', local);
+        }
+        console.log(local);
+      }
+      firstScope();
+
+      function lastScope() {
+        let local = 'if문 밖의 let';
+        if (local) {
+          let local = 'let 재선언';
+          console.log('if블럭안의 let:', local);
+        }
+        console.log(local);
+      }
+      lastScope();
+      /*
+    const a=1;
+    console.log(a)//1
+    const a=2;
+    */
+      //전역변수 : 함수외부에서 선언된 변수로 모든 곳에서 접근이 가능 하고 프로그램이 종료될 때까지 메로리 유지
+      //지역변수 : 함수또는 블록내부에서 선언된 변수, 함수나 블록내에서만 접근이 가능, 실행이 끝나면 메모리 사라짐
+      let globalVar = '전역변수';
+      function exFunction() {
+        console.log(globalVar);
+      }
+      exFunction();
+      console.log(globalVar);
+
+      function exFunction() {
+        let localvar = '지역변수';
+        console.log(localvar);
+      }
+      exFunction();
+      //console.log(localvar)
+
+      // var적용
+      var a = 1;
+      if (true) {
+        var a = 2;
+        console.log('if문 안의 a값:', a);
+      }
+      console.log('if문 밖의 a값:', a);
+
+      // let 적용
+      let b = 1;
+      if (true) {
+        let b = 2;
+        console.log('if문 안의 a값:', b);
+      }
+      console.log('if문 밖의 a값:', b);
+      // const 적용
+      const c = 1;
+      if (true) {
+        const c = 2;
+        //const c=3
+        console.log('if문 안의 a값:', c);
+      }
+      console.log('if문 밖의 a값:', c);
+
+      //  리터널(``)
+      function hello1(name) {
+        console.log('안녕하세요' + name + '~');
+      }
+      hello1('홍길동');
+
+      function hello2(name) {
+        console.log(`안녕하세요, ${name}~~`);
+      }
+      hello2('홍길동');
+      //자료형(data type)
+      /*기본타입 : 문자열", 숫자123, 불린true(1)/false(0) , 널, 언디파인드 (값에 의해 조작되는 타입)/  
+    참조타입: 객체(배열, 함수, 정규표현식)*/
+      /*문자열 : "" , 이스케이프문자 \n:줄바꿈 \t:수평탭
+    number + string =  string
+    number +  boolean = number 
+    //형변환
+    문자열을 정수로 변환 "255"  ->255 (parseInt())
+    문자열을  소수로 변환  "255.25"  ->255.25(parseFloat())
+    블린 또는 숫자를 문자로 변환  true/false, 255 ==>"true/false" "255"(toString())
+
+    문자열   +   숫자  =>문자열이 우선
+
+undefined : 아직 값이 설정 되지 않았다
+            객체가 존재하지 않거나 선언된 변수값을 할당하지 않음
+
+null : 값이 없다
+        사용자가 객체나 변수의 값이 비어지게 값을 할당했다*/
+
+      //연산자
+      /*산술연산자 , 대입연산자, 비교연산자 삼항연산자, 논리연산자*/
+      //산술연산자 + - * / %
+      let e = 10;
+      let d = 4;
+      console.log(e + d); //14
+      console.log(e - d); //6
+      console.log(e * d); //40
+      console.log(e / d); //2.5
+      console.log(e % d); //2
+
+      //대입연산자 +=  -=  *=  /=  %=:산술연산후 할당 ,=:기본대입연산자  &&=,||=,??= 논리연산후 할당
+      let aa = 10;
+      aa += 5; //aa=aa+5
+      console.log(aa); //15
+
+      let bb = 20;
+      bb /= 4; //bb=bb/4
+      console.log(bb); //5
+
+      // falsy(거짓같은값):false,0,-0,"", null, undefined, NaN
+      let boxa = 0;
+      boxa &&= 5;
+      console.log(boxa); //0
+
+      //비교연산자  == , ===, != , !==, >, <=, <,<=
+      console.log(5 == '5'); //true  값만체크  type체크하지 않음
+      console.log(5 === '5'); //false  type까지 체크
+      console.log(10 > 2); //true
+      console.log('apple' > 'banana'); //false
+      console.log(false == 0); //true(0은 falsy라서 false0, true1)
+      console.log('' == 0); //true (빈문자열도 falsy라서)
+      console.log(null == undefined); //true
+      console.log(null === undefined); //false
+
+      //삼항연산자
+      //조건식 ?  참일때 값 :  거짓일때 값
+      const age = 20;
+      const mesage = age >= 18 ? '성인입니다' : '미성년자입니다 ';
+      console.log(mesage); //성인입니다
+
+      //논리연산자  &&, ||, !
+      console.log(true && true); //true
+      console.log(true && false); //false
+      console.log(0 && '안녕하세요'); //0
+      console.log(true || false); //true
+      console.log(false || false); //false
+      console.log(0 || '안녕하세요'); //"안녕하세요"첫번째 truthy값을 반환
+      console.log(!true); //false
+      console.log(!0); //true(0 falsy한 값이라서)
+      console.log(!false); //true
+
+      //증감연산자 ++  ,--
+      //변수++: 문장을 실행후 1을 더한다 , ++변수:기존 변수에 1을 더한후 문장실행
+      let number = 20;
+      console.log(number);
+      console.log(number++); //20출력 number=21
+      console.log(number); //21
+      console.log(--number); //20
+      console.log(--number); //19
+      console.log(number++); //19 number=20
+      console.log(number); //20
+    </script>
+  </body>
+</html>

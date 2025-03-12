@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+        margin: 10px;
+        float: left;
+        padding: 60px;
+        background-color: #09c;
+        font-size: 20px;
+        text-align: center;
+      }
+      p {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div onmouseleave="leave()">
+      <p>
+        mouseleave :<br />
+        <span id="num1">마우스 올려놓기</span>
+      </p>
+    </div>
+
+    <div onmouseout="out()">
+      <p>
+        mouseout :<br />
+        <span id="num2">마우스 올려놓기</span>
+      </p>
+    </div>
+    <script>
+      let x = 0;
+      let y = 0;
+
+      function leave() {
+        document.getElementById('num1').innerHTML = x += 1;
+      }
+      function out() {
+        document.getElementById('num2').innerHTML = y += 1;
+      }
+    </script>
+  </body>
+</html>
