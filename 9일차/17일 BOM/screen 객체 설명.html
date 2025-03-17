@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        screen 객체 :  사용자의 화면 정보
+        screen.width: 화면너비, screen.height:화면높이,  
+        screen.availwidth:사용가능한 화면너비,  screen.availheiht:사용가능한 화면 높이
+    -->
+        <h2>screen 객체</h2>
+        <div id="screenInfo"></div>
+        <script>
+                const screenwidth = screen.width;
+                const screenheight = screen.height;
+                const availwidth = screen.availWidth;
+                const availheiht = screen.availHeight;
+
+                const  screeninfdiv = document.getElementById('screenInfo');
+                screeninfdiv.innerHTML =`
+                    <p><strong>화면너비</strong>${screenwidth}px</p>
+                    <p><strong>화면높이</strong>${screenheight}px</p>
+                    <p><strong>사용가능한 화면너비</strong>${availwidth}px</p>
+                    <p><strong>사용가능한 화면 높이</strong>${availheiht}px</p>
+
+                `
+        </script>
+</body>
+</html>

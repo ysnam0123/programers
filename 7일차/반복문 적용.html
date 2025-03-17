@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    for (let i = 1; i <= 5; i++) {
+      console.log(i);
+    }
+    //while
+    let j = 0;
+    while (j < 5) {
+      console.log(j);
+      j++;
+    }
+
+    //do...while
+    //초기값이 조건값에 true인 경우
+    let z = 0;
+    do {
+      console.log('do...while:', z);
+      z++;
+    } while (z < 5);
+    //초기값이 조건값에 false 인 경우
+    let zz = 6;
+    do {
+      console.log('do...while:', zz);
+      zz++;
+    } while (zz < 5);
+
+    // for ...in
+    const person = {
+      name: '홍길동',
+      age: 20,
+      city: '서울',
+    };
+    for (let key in person) {
+      console.log(Object.keys(person));
+      console.log(Object.entries(person));
+      console.log(`${key}:${person[key]}`);
+    }
+
+    // for ... of
+    const fruits = ['사과', '오렌지', '딸기'];
+    for (let fruit of fruits) {
+      console.log('for...of', fruit);
+    }
+
+    //forEach
+    const allfruis = ['사과', '오렌지', '딸기'];
+    allfruis.forEach(function (fruit, index) {
+      console.log(`${index}: ${fruit}`);
+    });
+
+    const numbers = [1, 2, 3, 4, 5];
+    numbers.forEach((num) => {
+      console.log('forEach 화살표함수', num * 2);
+    });
+
+    const users = [
+      { name: '홍길동', city: '서울' },
+      { name: '홍길동1', city: '부산' },
+      { name: '홍길동2', city: '울산' },
+    ];
+    users.forEach((user) => {
+      console.log('forEach 객체배열', user.name);
+    });
+  </script>
+</html>
