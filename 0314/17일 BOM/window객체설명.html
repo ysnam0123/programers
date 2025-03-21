@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        window 객체 :  브라우저의 창 
+        window.open():열기  window.close():닫기 window.alert():알림창  window.prompt();값 입력 (확인 취소) 
+        window.confirm():확인취소
+    -->
+        <h2>window 객체</h2>
+        <button id="open">open</button>
+        <button id="close">close</button>
+        <script>
+            let newWindow;
+            document.getElementById('open').addEventListener('click',()=>{
+                newWindow=window.open('http://www.naver.com',"_blank","width=500, height=500")
+            })
+
+            document.getElementById('close').addEventListener('click',()=>{
+                if(newWindow && !newWindow.closed){
+                     newWindow.close()
+                }else{
+                    alert('창은 이미 닫혔습니다')
+                }
+            })
+
+            const isconfirm = confirm('정말 로그아웃 하시겠습니까?')
+            const name =  prompt("이름을 입력하세요",'');
+            console.log(name)
+
+        </script>
+</body>
+</html>

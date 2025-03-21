@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    🥇 string 객체
+
+    🥇 indexOf
+        : 문자열이나 배열에서 특정값의 위치를 반환 할때, 값이 존재 하지 않으면 -1을 반환
+    
+    
+     문자열에서  indexOf
+     <script>
+        const text = "hello, world";
+        console.log(text.indexOf("world"))   //7
+        console.log(text.indexOf("get"))   //-1
+        console.log(text.indexOf('o'))//4
+     </script>
+    
+     배열에서  indexOf
+       <script>
+            const numbers=[1,2,3,4,5]
+            console.log(numbers.indexOf(3))//2
+            console.log(numbers.indexOf(7))//-1
+            
+       </script>
+
+    선택적 매개변수
+       <script>
+         const texts = "banana";
+          console.log(texts.indexOf('a',2))// 인덱스 2 이후의 첫번째 a   3
+       </script>
+
+
+🥇 findIndex메서드 : 배열에서 주어진 조건에 만족하는 요소의 인덱스를 반환
+    조건에 만족하는 요소가 없으면  -1을 반환
+    ::조건에 따라 요소를 찾을때 
+
+    array.findIndex(callback(element, index, array),thisArg)
+    element: 현재 처리중인 요소  index :  현재 요소의 인덱스  , array : 현재 배열 자체
+    thisArg: 선택적으로  callback 함수 내부에소  this로 사용될값.
+
+    <script>
+         const num = [10,20,30,40,50] 
+         //첫번째로 30봐 큰 인덱스를 찾음
+         const index =  num.findIndex(num => num>30)
+         console.log(index)//3
+
+         const users = [
+            {id:1, name:'홍길동'},
+            {id:2, name:'김길동'},
+            {id:3, name:'이길동'}
+         ]
+         const userIndex = users.findIndex(user =>user.name === "김길동");
+         console.log(userIndex);//1
+    </script>
+
+findIndex :  조건을 기반으로 검색
+indexOf : 값 자체를 기반으로 검색
+
+🥇charAt(index) : 주어진 인덱스에 있는 문자를 반환
+    <script>
+        const str =  "javascript";
+        console.log(str.charAt(4))//s
+    </script>
+
+🥇concat(str) : 두개 이상의 문자열을 합침
+    <script>
+        const str_1 =  "javascript";
+        const str_2 = "hello"
+        console.log(str_1.concat(str_2))//javascripthello
+    </script>
+    
+🥇includes(substring) : 문자열이 특정 문자열을 포함하는지 
+
+    <script>
+        const name =  "javascript hello";
+        console.log(name.includes("hello"))//true
+    </script>
+🥇slice(start, end) : 문자열의 부부분을 찾을때
+    <script>
+        const slice_str =  "javascript hello";
+        console.log(slice_str.slice(0,4))//java
+    </script>
+
+🥇replace(search, replace) : 문자열을 다른 문자열로 대체
+    <script>
+        const replace_str =  "javascript hello";
+        console.log(replace_str.replace('hello','world'))//javascript world
+    </script>
+
+🥇toUpprCase() / toLowerCase() :문자열을 대소문자 변환
+        <script>
+            const to_str_1="hello"
+            const to_str_2="HELLO"
+            console.log(to_str_1.toUpperCase()) //HELLO
+            console.log(to_str_2.toLowerCase()) //hello
+        </script> 
+🥇length :문자열의 길이 반환
+        <script>
+            const length_str =  "hello";
+            console.log(length_str.length) //5
+        </script> 
+        
+      
+
+ 🥇 Math 객체  : 수학적인 연산을 수행할때 
+
+     절대값 구하기
+        <script>
+            let nums = -10;
+            let value = Math.abs(nums);
+            console.log(value) //10
+        </script>
+
+     랜덤 숫자 생성
+        <script>
+            let randomValue =Math.random(); //0~1 숫자가 랜덤
+            console.log(randomValue)
+        </script>
+
+     최대값 구하기
+        <script>
+            let maxValue =Math.max(10,20,30,40);
+            console.log(maxValue)    //40    
+        </script>
+     최소값 구하기
+        <script>
+                let minValue =Math.max(10,20,30,40);
+                console.log(minValue)    //10    
+        </script>     
+        </script>
+     반올림 
+        <script>
+              let roundNum= 4.5
+               let roundValue = Math.round(roundNum);
+               console.log(roundValue) //5  
+        </script>
+
+🥇Date  객체  :날짜와 시간을 다루기 위한 객체
+
+        //현재 날짜와 시간
+        <script>
+            let now = new Date();
+            console.log(now)
+        </script>
+
+        //요일  년도  시간
+        <script>
+             let _now = new Date();
+             console.log(_now.getDay())//4
+        //0일  1월   2화   3수   4목   5금  6토 
+            console.log("년도:",_now.getFullYear())//년도 2025
+            console.log("월:",_now.getMonth()+1)//월: 2  월도 0부터 시작하므로 +1  월:3
+            console.log("월:",_now.getDate())//
+            console.log("시:",_now.getHours())//12
+            console.log("분:",_now.getMinutes())//12
+            console.log("초 :",_now.getSeconds())//29
+
+        </script>
+
+        //날짜 시간 변경
+        <script>
+            let date =  new Date();
+            console.log('현재 날짜', date)
+
+            date.setFullYear(2030)//연도를 2030으로 변경
+            date.setMonth(8)//월을 변경
+            date.setDate(30)//일을  변경
+
+            console.log('변경하기',date)
+        </script>
+
+
+        <script>
+            let date1 = new Date("2025-03-20")
+            let date2 = new Date("2025-08-01")
+
+            let diff =  date2 - date1;
+            let days =  diff / (1000 * 60 *  60* 24)
+
+            console.log(diff)//1157760000
+
+            console.log('두날짜의 차이는 :',`${days}일`)
+        </script>
+       
+</body>
+</html>
+

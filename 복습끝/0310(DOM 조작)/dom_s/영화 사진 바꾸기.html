@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+  <head>
+    <title>new document</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+      body,
+      div,
+      img,
+      p,
+      h3 {
+        margin: 0;
+        padding: 0;
+      }
+      .wrap {
+        width: 500px;
+        border: 1px solid #e1e1e1;
+        padding: 5px;
+        position: relative;
+        top: 50px;
+        left: 100px;
+      }
+      h3 {
+        background-color: #f4f4f4;
+        height: 20px;
+        padding: 10px 0 0 20px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e1e1e1;
+      }
+      body {
+        font-size: 12px;
+        color: #000;
+        font-family: '돋움';
+      }
+      p.text {
+        background-color: #f4f4f4;
+        border: 1px solid #e1e1e1;
+        margin-top: 10px;
+        padding: 5px;
+        line-height: 17px;
+      }
+      h3 {
+        font-size: 100%;
+      }
+      input {
+        margin-top: 10px;
+      }
+    </style>
+    <script type="text/javascript">
+      //window onload : css, dom, img 모든것이 로드되고 실행
+      // DOMContentLoaded : html 문서(dom이 준비되는 즉시) 로드 후 실행 -> 속도가 빠르다.
+      document.addEventListener('DOMContentLoaded', () => {
+        const pic = document.querySelector('#pic');
+        const comment = document.querySelector('#comment');
+
+        const changeMoviePic = (num) => {
+          //console.log(num);
+          pic.src = `images/movie${num}.jpg`; //템플릿 리터럴 이라고 한다.
+          console.log(pic.src);
+          pic.alt = `영화${num}`;
+        };
+        document
+          .querySelector('button[data-movie-num="1"]')
+          .addEventListener('click', () => changeMoviePic(1));
+        document
+          .querySelector('button[data-movie-num="2"]')
+          .addEventListener('click', () => changeMoviePic(2));
+        document
+          .querySelector('button[data-movie-num="3"]')
+          .addEventListener('click', () => changeMoviePic(3));
+
+        const commentAlign = (align, bgColor, textColor = '#000') => {
+          //   console.log(align);
+          comment.style.textAlign = align;
+          comment.style.background = bgColor;
+          comment.style.color = textColor;
+        };
+
+        document
+          .querySelector('button[data-align="left"]')
+          .addEventListener('click', () => commentAlign('left', '#fcf'));
+        document
+          .querySelector('button[data-align="center"]')
+          .addEventListener('click', () => commentAlign('center', '#0cf'));
+        document
+          .querySelector('button[data-align="right"]')
+          .addEventListener('click', () => commentAlign('right', '#0c6'));
+      });
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+      <h3>도둑들</h3>
+      <p><img src="images/movie1.jpg" alt="영화1" width="500" id="pic" /></p>
+      <!-- data로 데이터 속성으로 javascript에서 요소에 추가적인 데이터를 저장/읽기-->
+      <button type="button" data-movie-num="1">영화1</button>
+      <button type="button" data-movie-num="2">영화2</button>
+      <button type="button" data-movie-num="3">영화3</button>
+
+      <!--매개변수처리
+		<input type="button"  value="영화1" onclick="javascript:moviePic(1);"/>
+		<input type="button"  value="영화2" onclick="javascript:moviePic(2);"/>
+		<input type="button"  value="영화3" onclick="javascript:moviePic(3);"/>-->
+      <p class="text" id="comment" style="background-color: #ffffff">
+        10인의 도둑, 1개의 다이아몬드 그들이 움직이기 시작했다! 한 팀으로 활동
+        중인 한국의 도둑 뽀빠이와 예니콜, 씹던껌, 잠파노. 미술관을 터는데 멋지게
+        성공한 이들은 뽀빠이의 과거 파트너였던 마카오박이 제안한 홍콩에서의
+        새로운 계획을 듣게 된다. 여기에 마카오박이 초대하지 않은 손님, 감옥에서
+        막 출소한 금고털이 팹시가 합류하고 5명은 각자 인생 최고의 반전을 꿈꾸며
+        홍콩으로 향한다...
+      </p>
+      <!--색상과 정렬을 같이 작업
+		<input type="button"  value="left" onclick="javascript:commentAlign('left','#ffccff','바탕체');"/>
+		<input type="button"  value="cnenter" onclick="javascript:commentAlign('center','#00ccff','굴림체');"/>
+		<input type="button"  value="right" onclick="javascript:commentAlign('right','#00cc66','돋움체');"/>-->
+
+      <!--색상만작업-->
+      <button type="button" data-align="left">left</button>
+      <button type="button" data-align="center">center</button>
+      <button type="button" data-align="right">right</button>
+    </div>
+  </body>
+</html>

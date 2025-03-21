@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .section .px {
+      font-size: 12px;
+    }
+    .em {
+      font-size: 1.2em;
+    }
+    html {
+      font-size: d;
+    }
+    .indent1 {
+      text-indent: 200px;
+    }
+    .indent2 {
+      text-indent: -200px;
+    }
+    .letter {
+      /* 양수값, 음수값 */
+      letter-spacing: -10px;
+    }
+    .bg div{
+      width: 300px;
+      height: 300px;
+      border: 2px solid #000;
+      box-sizing: border-box;
+    }
+    /* .bg-img{
+      background-image: ;
+    } */
+    .bg-repeat{
+      background-image: url();
+      background-repeat: repeat-y;
+    }
+    .bg-position{
+      background-image: url();
+      background-repeat: no-repeat;
+      /* 또는 */
+      background: url() no-repeat 0px 0px yellow;
+      /*
+      배경 이미지와 배경 색상을 동시에 적용시 색상은 반드시 마지막에
+      background-attachment : fixed;
+      background-size: 60px 40px;
+      contain : 표시영역에 모두 들어갈 수 있는 최대 크기로 표시
+      background-size: contain;
+      */
+    }
+    /* { */
+      /* https://cssgradient.io
+        text shadow
+        x축, y축, 블러값, 컬러값
+        text-shadow: 2px 2px 5px #000;
+
+         */
+    /* } */
+  </style>
+  <body>
+    <!-- 단위 -->
+    <section class="section">
+      <div class="px">px 단위입니다.</div>
+      <div class="em">em 단위입니다. - 부모로부터 상속</div>
+      <div class="rem">rem 단위입니다. - root 로부터 상속</div>
+      <div class="percentage">percentage 단위입니다.</div>
+      <div class="vw">
+        vw 단위입니다. - 컨텐츠 너비값을 기준으로 1/100로 계산된다.
+      </div>
+      <!-- 들여쓰기 -->
+      <div class="family"></div>
+      <div class="indent1">들여쓰기</div>
+      <div class="indent2">내여쓰기</div>
+
+      <div class="bg">
+        <div class="bg-img">배경 이미지</div>
+        <div class="bg-repeat">배경이미지 반복</div>
+        <div class="bg-position">배경이미지 위치</div>
+        <div class="gradient1">라인배경</div>
+        <div class="gradient2">원형 배경</div>
+      </div>
+    </section>
+  </body>
+</html>

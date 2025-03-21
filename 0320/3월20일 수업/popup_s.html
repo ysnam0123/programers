@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+<style type="text/css">
+
+ *{margin:0; padding:0}
+ body{font-size:12px;
+ color:#333;
+ font-family:"돋움",dotum;
+ }
+ img{border:none;
+	  vertical-align:top;}
+ .control a[class*="btn_"] {
+    background: rgba(0, 0, 0, 0) url("images/bannerzone_control.gif") no-repeat scroll 0 0;
+    border-left: 1px solid #cbcbcb;
+    display: block;
+    float: left;
+    height: 34px;
+    overflow: hidden;
+    width: 34px;
+}
+ .control a span {
+    float: left;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+    position: absolute;
+    visibility: hidden;
+    width: 0;
+}
+ .control a.btn_left {
+    background-position: 0 0;
+}
+ .control a.btn_play {
+    background-position: 0 -34px;
+}
+ .control a.btn_stop {
+    background-position: 0 -68px;
+}
+ .control a.btn_right {
+    background-position: 0 -102px;
+}
+ .control a.btn_more {
+    background-position: 0 -136px;
+}
+ .js_slide.type_03 {
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+ .js_slide.type_03 h3 {
+    font-size: 22px;
+    line-height: 34px;
+    
+}
+ .js_slide.type_03 .control {
+    height: 34px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    z-index: 10;
+}
+ .js_slide.type_03 .control .count {
+    color: #e66d37;
+    float: left;
+    margin-right: 10px;
+    padding-top: 10px;
+}
+ .js_slide.type_03 .control .count span {
+    color: #444;
+}
+.left_elem {
+    
+    height: 300px;
+    width: 450px;
+		margin:50px auto ;
+		border:1px solid #c3c3c3;
+		position:relative;
+	
+}
+.move{overflow:hidden;
+  width:450px;
+	height:280px;
+	}
+.move ul{width:2250px; position:relative;
+
+}
+.move ul li{float:left; position:absolute; left:0; top:0}
+
+.conut_N{position:absolute;
+				top:10px;
+				right:190px;}
+.conut_N .count{color:red;}
+
+</style>
+
+ 
+
+  <title>Document</title>
+ </head>
+ <body>
+    <div class="left_elem">
+		<div class="js_slide type_03">
+			<h3>팝업존</h3>
+            <div class="conut_N">
+				<span class="count">1</span><span class="banner_total">/5</span>
+			</div>
+            <div class="control">
+                <a href="#link" class="btn_left"><span>이전</span></a>
+                <a href="#link" class="btn_play"><span>재생</span></a>
+                <a href="#link" class="btn_stop"><span>정지</span></a>
+                <a href="#link" class="btn_right"><span>다음</span></a>
+                <a href="/" class="btn_more"><span>더보기</span></a>
+            </div>
+            <div class="move">
+                <ul>
+                    
+                    <li class="on"><a href="/" class="bImg on" target="_blank" title="새창이동">
+                    <img src="images/banner1.jpg" alt="2017년부터 이렇게 달라집니다." /></a></li>
+                
+                    <li><a href="/" class="bImg" target="_blank" title="새창이동">
+                    <img src="images/banner2.jpg" alt="재난시 국민 행동 요령"/></a></li>
+                
+                    <li><a href="/ " class="bImg" target="_blank" title="새창이동">
+                    <img src="images/banner3.jpg" alt="죠류인플루엔자, 무엇이든 물어보세요!"  /></a></li>
+                
+                    <li><a href="/" class="bImg" target="_blank" title="새창이동">
+                    <img src="images/banner4.jpg" alt="공익신고 철저한 비밀보장과 보호를 약속합니다." /></a></li>
+                
+                    <li><a href="#this" class="bImg" >
+                    <img src="images/banner5.jpg" alt="테러가 의심되면... 111/112 테러 신고 포상금 최고 1억원 111(국가정보원) 또는  112(경찰청)로 신고하세요. 국무총리실대테러센터"  /></a></li>
+                
+                </ul>
+            </div>
+		</div>
+	</div>
+    <script  type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded",function(){
+            const slides = document.querySelectorAll(".move li")
+            const leftBtn = document.querySelector('.btn_left')
+            const rightBtn = document.querySelector('.btn_right')
+            const stopBtn = document.querySelector('.btn_stop')
+            const playBtn = document.querySelector('.btn_play')
+            const countElement =  document.querySelector('.count')
+            const total = slides.length -1;
+            let num = 0;
+   
+            //모든 슬라이드를 숨기고 첫번째 슬라이드만 보이게 
+            slides.forEach((slide,index)=>{
+               slide.style.display = index === 0 ? "block" :"none"
+            })
+   
+          //선택된 슬라이드만 보이고 나머지는 숨기고, 현재 슬라이드 번호를 count 에 업데이트 
+            function updateSlide(selectNum){
+                   slides.forEach((slide, index)=>{
+                       if(index === selectNum){
+                           slide.style.display ="block"
+                       }else{
+                           slide.style.display ="none"
+                       }
+                   })
+                   //번호 업데이트
+                   countElement.textContent = selectNum + 1;
+                   num = selectNum
+
+                    //페이지 로드시 자동 슬라이드 실행
+            bannerInterval =  startAutoSlide()
+            }
+   
+   
+           //  왼쪽버튼 이전슬라이드 번호 계산  슬라이드가 01234 가 있고 0보다 작으면 total 로 그렇지 않으면 않으면 이전 슬라이드로 업데이트 하기위해
+            leftBtn.addEventListener('click',(event)=>{
+               event.preventDefault()
+               const prevNum = num <= 0 ? total : num - 1
+               updateSlide(prevNum)
+            })
+   
+            //  오른쪽버튼 다음 슬라이드 번호 계산 
+            rightBtn.addEventListener('click',(event)=>{
+               event.preventDefault()
+
+               const nextNum = num >= total ? 0 : num + 1   
+            //   *************2번부터 실행해서 수정 ---------------
+
+               updateSlide(nextNum)
+            });  //; **************************코딩안되어 있어서 오류 였음
+   
+   
+                // 왼쪽 오른쪽 버튼에 마우스가 올라가서나 내려왔을때 중지 또는 실행 (setInterval과 충돌)
+             
+               //왼쪽 오른쪽  버튼에서 발생하는 행동이 동일한 경우 공통으로 처리하기 위해서 배열 리터럴에  leftBtn, rightBtn에 넣고 forEach로 처리
+               [leftBtn,rightBtn].forEach(
+                   (btn) => {
+                   btn.addEventListener("mouseenter",
+                   (event) => {
+                       clearInterval(bannerInterval);
+                   }
+               );
+   
+                   btn.addEventListener("mouseleave",
+                   (event) => {
+                       clearInterval(bannerInterval)
+                       bannerInterval = startAutoSlide()
+                   }
+               );
+   
+           }
+       );
+   
+   
+   //자동 슬라이드 함수 :오른쪽 버튼 클릭 이벤트 실행 
+            const rolling =()=>{
+
+                const nextNum = num >= total ? 0 : num + 1;
+                updateSlide(nextNum);
+              // rightBtn.dispatchEvent(new Event('click'))//
+            }
+   
+   
+            let bannerInterval = null; 
+            let isAuto = true;
+   
+            //자동 슬라이드 실행
+            const startAutoSlide = () =>{
+               if(isAuto){  //isAuto 가 true일때 setInterval 설정(3초마다 rolling을 실행)
+                  clearInterval(bannerInterval); 
+                   return setInterval(rolling, 3000)
+               }else{//isAuto  가 false 일때 return  0 / null 반환해서 setInterval를 안함(clearInterval)
+                   return  null
+               }
+            }
+   
+   
+            //페이지 로드시 자동 슬라이드 실행
+            bannerInterval =  startAutoSlide()
+   
+   //정지 버튼을 클릭했을때 자동슬라이드를 false, 자동 슬라이드 중지 
+            stopBtn.addEventListener('click',(event)=>{
+               event.preventDefault()
+               isAuto =false;
+               clearInterval(bannerInterval)
+               
+            })
+   
+   //재생 버튼을 클릭했을때 자동슬라이드를 true, 자동 슬라이드 실행 
+            playBtn.addEventListener('click',(event)=>{
+               event.preventDefault()
+               isAuto =true;
+               clearInterval(bannerInterval); // 기존 인터벌 제거
+               bannerInterval =  startAutoSlide()
+           })
+   
+    })
+    </script>
+ </body>
+</html>
+
+
+
+
+

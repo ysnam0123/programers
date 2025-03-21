@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+
+<head>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <style type="text/css">
+        body,
+        div,
+        span,
+        a,
+        img {
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            border: none
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .banner {
+            width: 697px;
+            height: 326px;
+            margin: 50px auto;
+            position: relative
+        }
+
+        .banner .leftBtn {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -22px;
+        }
+
+        .banner .rightBtn {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -22px;
+        }
+
+        .banner .btn {
+            position: absolute;
+            bottom: 30px;
+            width: 697px;
+            text-align: center
+        }
+        img{vertical-align: middle}
+        .pageNum{margin-left:15px; font-weight: 600; font-size: 14px; padding: 3px 12px;
+        background-color: rgba(0,0,0,0.5); color:#fff;border-radius: 10px}
+        .pageNum .num{color:tomato}
+
+    </style>
+
+    <script type="text/javascript">
+       document.addEventListener("DOMContentLoaded",()=>{
+        const leftBtn = document.getElementsByClassName('leftBtn')[0].getElementsByTagName('a')[0];
+        const rightBtn = document.getElementsByClassName('rightBtn')[0].getElementsByTagName('a')[0];
+        const stopBtn =  document.getElementsByClassName('stopBtn')[0];
+        const playBtn =  document.getElementsByClassName('playBtn')[0];
+        const banner =  document.getElementById('banner');
+        const page = document.querySelector('.pageNum > .num');
+        let currentNum = 1;
+        let sid;
+// 왼쪽버튼 마우스를 올리면 정지, 내리면 실행 , 클릭했을때(숫자증가:이미지 갯수 만큼만) 숫자증감 값을 photo 함수에 넘겨줌
+// 배너이미지 이동하고 번호 증가 ->photo
+        leftBtn.addEventListener('mouseenter',(event) =>{
+            clearInterval(sid);
+        })
+
+        leftBtn.addEventListener('mouseleave',(event) =>{
+            clearInterval(sid);
+            sid = auto()
+        })
+        leftBtn.addEventListener('click',(event) =>{
+            event.preventDefault();
+            let isnum = currentNum; //isnum =1
+            isnum--; //1-1 =0
+            if(isnum < 1){//0<1
+                 isnum = 5//isnum 5
+            }
+            //54321
+            photo(isnum)//photo 함수에  isnum값을 넘겨줌 / photo 함수에는 배너이미지와 숫자가 변경
+
+
+        })
+
+//오른쪽버튼 마우스를 올리면 정지, 내리면 실행 , 클릭했을때(숫자증가:이미지 갯수 만큼만) 숫자증감 값을 photo 함수에 넘겨줌 배너이미지 이동하고 번호 증가 ->photo
+        rightBtn.addEventListener('mouseenter',(event) =>{
+            clearInterval(sid);
+        })
+        rightBtn.addEventListener('mouseleave',(event) =>{
+            clearInterval(sid);
+            sid = auto()
+        })
+        rightBtn.addEventListener('click',(event) =>{
+            event.preventDefault();
+            let isnum = currentNum; //isnum =5
+            isnum++; //6 
+            if(isnum > 5){//6>5
+                 isnum = 1//isnum 1
+            }
+            //12345
+            photo(isnum)//photo 함수에  isnum값을 넘겨줌 / photo 함수에는 배너이미지와 숫자가 변경
+        })
+//배너이미지 배너 이미지를 변경하고, 1/5 2/5 3/5 4/5 5/5 에서 앞에 num값을 수정
+        const photo=(num)=>{
+            banner.src =  `images/img${num}.jpg`;//images/img1.jpg,images/img2.jpg images/img3.jpg..
+            page.textContent = num;
+            currentNum = num
+
+        }
+//번호 증가 1씩 증가 해서 배너 이미지 갯수 만큼 이동,  증가한 값을 이미지 변경하는 함수에 넘겨줌
+        const rolling=()=>{
+            let isnum = currentNum;
+            isnum++;
+            if(isnum > 5){
+                isnum =1;
+            }
+            photo(isnum)
+        }
+//setInterval  함수 setinterval  실행
+        let isAuto = true; // 정지 실행 버튼을  true, false로 작업
+
+        const auto=()=>{
+            if(isAuto){
+                return setInterval(rolling,3000)
+            }else{
+               // return 0
+               return clearInterval(sid)
+            }
+        }
+        sid = auto();
+
+//정지 버튼 : 정지 버튼을 클릭하면 실행 버튼으로 변경되고 clearinterval
+        stopBtn.addEventListener('click',(event)=>{
+            event.preventDefault();
+            isAuto=false;
+            clearInterval(sid);
+            event.currentTarget.style.display ="none";
+            playBtn.style.display="inline-block"
+        })
+//실행 버튼   :실행 버튼을 클릭하면 정지버튼으로 변경되고  setinterval     
+        playBtn.addEventListener('click',(event)=>{
+            event.preventDefault();
+            isAuto=true;
+            sid = auto();
+            event.currentTarget.style.display ="none";
+            stopBtn.style.display="inline-block"
+        })
+
+       })
+        
+    </script>
+</head>
+
+<body>
+    <div class="banner">
+        <span class="leftBtn">
+            <a href="#" >
+                <img src="images/leftbtn.jpg" alt="" />
+            </a>
+        </span>
+
+        <div id="slideBanner">
+            <a href="#"><img src="images/img1.jpg" alt="" id="banner" /></a>
+        </div>
+
+        <span class="rightBtn">
+            <a href="#" >
+                <img src="images/rightbtn.jpg" alt="" />
+            </a>
+        </span>
+
+        <div class="btn">
+            <a href="#" class="stopBtn"><img src="images/pause.png" alt="" /></a>
+            <a href="#" class="playBtn" style="display: none;"><img src="images/play-button.png" alt="" /></a>
+            <span class="pageNum"><span class="num">1</span>/5</span>
+        </div>
+          
+
+    </div>
+
+</body>
+
+</html>
