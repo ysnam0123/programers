@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>로그인 시스템</title>
+	</head>
+	<body>
+		<div class="box">
+			<label for="id">아이디:</label>
+			<input type="text" id="id" name="id" />
+			<br />
+			<label for="password">비밀번호: </label>
+			<input type="text" id="password" name="password" />
+			<button class="logIn">로그인</button>
+		</div>
+		<div class="afterLogin" style="display: none">
+			<div class="welcomeBox"></div>
+			<button class="logOut">로그아웃</button>
+		</div>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const box = document.querySelector('.box');
+				const id = document.querySelector('#id');
+				const password = document.querySelector('#password');
+				const logIn = document.querySelector('.logIn');
+				const welcomeBox = document.querySelector('.welcomeBox');
+				const logOut = document.querySelector('.logOut');
+				const afterLogin = document.querySelector('.afterLogin');
+
+				// 🔹 기존 유저 정보 불러오기 (배열 유지)
+				let users = JSON.parse(localStorage.getItem('users')) || [];
+
+				// 🔹 현재 로그인한 사용자 정보 불러오기
+				let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+				// 🔹 로그인 유지 기능 (새로고침해도 로그인 유지)
+				if (loggedInUser) {
+					showWelcomeMessage(loggedInUser.Id);
+				}
+
+				logIn.addEventListener('click', () => {
+					if (id.value && password.value) {
+						const userInfo = {
+							Id: id.value,
+							Password: password.value,
+						};
+
+						// 🔹 users 배열에 유저 정보 추가 (중복 검사)
+						if (!users.some((user) => user.Id === userInfo.Id)) {
+							users.push(userInfo);
+							localStorage.setItem('users', JSON.stringify(users));
+						}
+
+						// 🔹 현재 로그인한 유저 정보 저장 (세션 유지)
+						localStorage.setItem('loggedInUser', JSON.stringify(userInfo));
+
+						// 🔹 콘솔 출력
+						console.log(`✅ 로그인 완료! 저장된 아이디: ${userInfo.Id}`);
+						console.log('모든 유저:', users);
+
+						showWelcomeMessage(userInfo.Id);
+					} else {
+						alert('아이디와 비밀번호를 입력하세요');
+					}
+				});
+
+				// 🔹 로그아웃 기능
+				logOut.addEventListener('click', () => {
+					// 🔸 현재 로그인한 사용자 정보만 삭제
+					localStorage.removeItem('loggedInUser');
+
+					// 🔸 UI 초기화
+					welcomeBox.textContent = '';
+					afterLogin.style.display = 'none';
+					box.style.display = 'block';
+
+					// 🔸 입력 필드 초기화
+					id.value = '';
+					password.value = '';
+
+					console.log('🚀 로그아웃 완료! (유저 배열은 유지됨)');
+				});
+
+				// 🔹 환영 메시지를 표시하는 함수
+				function showWelcomeMessage(userId) {
+					box.style.display = 'none';
+					afterLogin.style.display = 'block';
+					welcomeBox.innerHTML = `<p>${userId}님, 환영합니다. 무엇을 도와드릴까요?</p>`;
+				}
+			});
+		</script>
+	</body>
+</html>

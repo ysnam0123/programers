@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Input Label Animation</title>
-    <style>
-      .input-container {
-        position: relative;
-        width: 200px;
-        margin: 50px;
-      }
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Input Label Animation</title>
+		<style>
+			.input-container {
+				position: relative;
+				width: 200px;
+				margin: 50px;
+			}
 
-      input {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        outline: none;
-      }
+			input {
+				width: 100%;
+				padding: 10px;
+				font-size: 16px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				outline: none;
+			}
 
-      label {
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: white;
-        padding: 0px 5px;
-        transition: transform 0.3s ease, color 0.3s ease;
-        pointer-events: none; /* 클릭을 방해하지 않도록 설정 */
-        font-size: 16px;
-        color: #888;
-      }
+			label {
+				position: absolute;
+				left: 10px;
+				top: 50%;
+				transform: translateY(-50%);
+				background: white;
+				padding: 0px 5px;
+				transition: transform 0.3s ease, color 0.3s ease;
+				pointer-events: none; /* 클릭을 방해하지 않도록 설정 */
+				font-size: 16px;
+				color: #888;
+			}
 
-      input:focus + label,
-      input:not(:placeholder-shown) + label {
-        transform: translateY(-25px);
-        color: red;
-        font-size: 14px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="input-container">
-      <input type="text" id="name" placeholder=" " required />
-      <label for="name">이름</label>
-    </div>
-  </body>
+			input:focus + label,
+			input:not(:placeholder-shown) + label {
+				transform: translateY(-25px);
+				color: red;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="input-container">
+			<input type="text" id="name" placeholder=" " required />
+			<label for="name">이름</label>
+		</div>
+	</body>
 </html>

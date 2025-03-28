@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<!-- 
+    상속
+      클래스는 다른 클래스를 상속받는다.
+      상속을 통해 부모 클래스의 기능을 그대로 사용하면서, 자식 클래스에서 추가적인 기능을 확장할 수 있다.
+    
+    extends
+      클래스 상속을 구현하기 위해 사용되는 키워드
+      상위 클래스(부모)의 속성과 메서드를 하위클래스(자식)가 상속받아 재사용하거나 확장할 수 있도록
+    
+    기본구조
+      class childClass extends parentClass{
+        constructor(...args){  //객체를 생성할때 실행되는 함수
+          super(...args)   : 부모 클래스의 생성자를 실행. 
+          자식 클래스의 초기화 코드
+        }
+        자식 클래스의 메서드 정의
+      }
+    -->
+
+		<script>
+			//부모 클래스 정의
+			class Person {
+				constructor(name, age) {
+					this.name = name;
+					this.age = age;
+				}
+				introduce() {
+					console.log(`안녕하세요, 저는 ${this.name}이고 ${this.age}살입니다.`);
+				}
+			}
+			class student extends Person {
+				constructor(name, age, major) {
+					super(name, age);
+					this.major = major;
+				}
+				study() {
+					console.log(`${this.name}은 ${this.major}을 공부합니다.`);
+				}
+			}
+			const Student1 = new Student('홍길동', 20, '컴퓨터');
+
+			// 부모 클래스 메서드 사용
+			student1.introduce(); //"안녕하세요, 저는 홍길동이고 20살입니다."
+
+			// 자식 클래스 메서드 사용
+			student1.study(); // 홍길동은 컴퓨터를 공부합니다.
+		</script>
+	</body>
+</html>

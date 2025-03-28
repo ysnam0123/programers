@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			const foodDelivery = new Promise((resolve, reject) => {
+				console.log('🍔 음식 주문 완료! 배달을 시작합니다...');
+
+				setTimeout(() => {
+					let success = true; // 배달 성공 여부 (true면 성공, false면 실패)
+
+					if (success) {
+						resolve('✅ 음식 도착! 맛있게 드세요!');
+					} else {
+						reject('❌ 배달 중 문제가 발생했습니다!');
+					}
+				}, 3000); // 3초 후 배달 완료
+			});
+
+			// 🔹 주문 결과 처리
+			foodDelivery
+				.then((message) => console.log(message)) // 성공하면 실행
+				.catch((error) => console.log(error)) // 실패하면 실행
+				.finally(() => console.log('📦 배달 프로세스 종료!'));
+		</script>
+	</body>
+</html>

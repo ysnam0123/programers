@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/todo.css">
+</head>
+<body>
+    <div class="container">
+        <h1>오늘의 할일</h1>
+        <div class="input-section">
+            <input type="text"  id="taskInput" placeholder="오늘의 할 일을 입력하세요">
+            <button id="addTaskBtn">등록</button>
+        </div>
+        <ul id="taskList">
+         
+        </ul>
+    </div>
+    <script>
+            document.addEventListener("DOMContentLoaded",()=>{
+                const taskInput = document.getElementById('taskInput');
+                const addTaskBtn = document.getElementById('addTaskBtn');
+                const taskList = document.getElementById('taskList')
+                let tasks =[];
+                
+                function addTask(){
+                    const taskText =  taskInput.value.trim();
+                    if(taskText === ""){
+                        alert("할 일을 입력하세요");
+                        return;
+                    }
+                    //새로운 할일객체 생성
+                    const newTask ={
+                        id:Date.now(),//고유한 아이디 생성
+                        text:taskText,//할일입력 텍스트
+                        completed:false//완료 여부 false 기본
+                    }
+                    //할일을 배열에 추가
+                    tasks.push(newTask);
+                    renderTasks();// 할일목록을 화면에 렌더링
+                    taskInput.value="";// 입력 필드 초기화
+                }
+
+                function renderTasks(){
+                      taskList.innerHTML=""//기존목록 초기화
+                    tasks.forEach(task=>{
+                        const li = document.createElement('li');
+                        const emoji ="😄";
+                        li.textContent=`${emoji} ${task.text}`;
+                        li.dataset.id = task.id;
+
+                        taskList.appendChild(li)
+
+                        if(task.completed){
+                            li.classList.add('completed')
+                        }
+
+                        const toggleBtn = document.createElement('button')
+                        toggleBtn.textContent = task.completed ? "취소": "완료"
+                        toggleBtn.classList.add('fihishBtn')
+                        toggleBtn.addEventListener('click',() =>toggleTask(task.id))
+                        //버튼을 클릭시 완료 상태 토글  ->완료면 취소, 취소면 완료
+
+                        const deleteBtn= document.createElement('button');
+                        deleteBtn.textContent="삭제";
+                        deleteBtn.classList.add('deleteBtn')
+                        deleteBtn.addEventListener('click',() =>deleteTask(task.id))
+
+                        li.appendChild(toggleBtn)
+                        li.appendChild(deleteBtn)
+                    })    
+                }
+
+                    //할일의 완료/취소 상태
+                function toggleTask(id){
+                    const task = tasks.find(task =>task.id === id ); //id로 해당 할일을 찾기
+                    if(task) {
+                        task.completed =!task.completed//완료 상태를반전
+                        renderTasks()//업데이트된 목로 다시 렌더링
+                    }
+                }
+                //삭제
+                function deleteTask(id){
+                     tasks = tasks.filter(task => task.id !== id);
+                     renderTasks()
+                }
+
+                
+
+
+
+                addTaskBtn.addEventListener('click',addTask)
+                renderTasks()
+            })
+    </script>
+</body>
+</html>
+
+
+<!--
+1)입력창이 비어있는 상태로 등록 버튼을 클릭하면 alert 창이 노출
+"할일을 입력하세요"
+1-1)입력창에 입력후 등록 버튼을 클릭하면 입력창 초기화 
+2)li 태그 생성 , 완료 버튼과 삭제 버튼도 생성  createElement, appentchild
+3)완료 버튼 선택시 라인으로 완료 상태 확인 classList.add
+4)완료 버튼을 선택시 완료 버튼이 삭제되고 취소 버튼으로 노출
+5)취소 버튼을 선택시 취소 버튼이 삭제되고 완료 버튼으로 노출
+6)id:현재시간 생성 Date.now()
+
+ 객체로 저장{id, 할일, 완료여부}
+ 추가: push, 삭제 :filter(id)
+
+
+1 id=1 숙제하기   2 id=2산책하기   3 id =3 운동하기
+-->

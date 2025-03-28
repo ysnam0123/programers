@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Code Editor Example</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+
+		<!-- HTML, CSS, JavaScript 모드 추가 -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/css/css.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+	</head>
+	<body>
+		<h1>팀 코드 입력</h1>
+		<textarea id="code-editor"></textarea>
+		<button onclick="executeCode()">코드 실행</button>
+		<div id="output"></div>
+
+		<div id="iframe-container" style="border: 1px solid #ccc; margin-top: 20px">
+			<iframe id="output-frame" style="width: 100%; height: 400px"></iframe>
+		</div>
+
+		<script>
+			const editor = CodeMirror.fromTextArea(
+				document.getElementById('code-editor'),
+				{
+					lineNumbers: true,
+					mode: 'htmlmixed', // HTML, CSS, JS 혼합 모드
+					lineWrapping: true,
+					theme: 'monokai',
+					indentUnit: 2,
+					smartIndent: true,
+				}
+			);
+
+			function executeCode() {
+				const code = editor.getValue(); // 입력된 코드 가져오기
+
+				// iframe을 사용해서 코드를 실행합니다.
+				const iframe = document.getElementById('output-frame');
+				const iframeDoc = iframe.contentWindow.document;
+
+				try {
+					// iframe 문서에 HTML, CSS, JS를 적용
+					iframeDoc.open();
+					iframeDoc.write(code); // 코드 실행
+					iframeDoc.close();
+				} catch (error) {
+					document.getElementById('output').innerText =
+						'Error: ' + error.message;
+				}
+			}
+		</script>
+	</body>
+</html>
